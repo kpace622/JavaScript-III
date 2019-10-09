@@ -15,16 +15,46 @@
 
 // Principle 1
 
+// console.log(this);
+
 // code example for Window Binding
 
 // Principle 2
+
+var person = {
+    firstName: "Kyle",
+    lastName: "Pace",
+    school: "Lambda School",
+    fullName: function() {
+      return this.firstName + " " + this.lastName + " " + this.school;
+    }
+  };
+  console.log(person.fullName())
 
 // code example for Implicit Binding
 
 // Principle 3
 
+// const villain = new Villain({
+//     createdAt: new Date(),
+//     dimensions: {
+//       length: 1,
+//       width: 3,
+//       height: 4,
+//     },
+//     healthPoints: 5,
+//     name: "Bandit",
+//     team: "Outlaw",
+//     weapons: [
+//       "Sword",
+//     ],
+//     language: "Common Tongue",
+//       })
+
 // code example for New Binding
 
 // Principle 4
+
+    // Humanoid.call(this, villainAttrs);
 
 // code example for Explicit Binding

@@ -53,7 +53,6 @@ function Humanoid(humanoidAttrs) {
   this.weapons = humanoidAttrs.weapons;
   this.language = humanoidAttrs.language;
 }
-Humanoid.prototype = Object.create(GameObject.prototype);
 Humanoid.prototype = Object.create(CharacterStats.prototype);
 Humanoid.prototype.greet = function() {
   return `${this.name} offers a greeting in ${this.language}`;
@@ -128,11 +127,75 @@ Humanoid.prototype.greet = function() {
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
-  function Villain(villainAttrs) {
-    humanoidAttrs.call(this, villainAttrs);
-  }
-  villain.prototype
-  // Stretch task: 
+
+
+
+// Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+
+  function Villain(villainAttrs) {
+    Humanoid.call(this, villainAttrs);
+  }
+  Villain.prototype = Object.create(Humanoid.prototype);
+  Villain.prototype.attack = function() {
+  return this.healthPoints - 5
+  }
+  Villain.prototype.healthCheck = function() {
+    if (this.healthPoints <= 0) {
+      return villain.destroy()
+    } else {
+      return "End turn"
+    }
+  }
+
+  function Hero(heroAttrs) {
+    Humanoid.call(this, heroAttrs);
+  }
+  Hero.prototype = Object.create(Humanoid.prototype);
+
+  const hero = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 12,
+    name: "Hero!",
+    team: "The Round Table",
+    weapons: [
+      "Sword",
+    ],
+    language: "Common Tongue",
+  });
+   
+
+  const villain = new Villain({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 3,
+      height: 4,
+    },
+    healthPoints: 5,
+    name: "Bandit",
+    team: "Outlaw",
+    weapons: [
+      "Sword",
+    ],
+    language: "Common Tongue",
+      })
+    
+  console.log(hero);
+  console.log(villain.attack());
+  console.log(villain.healthCheck());
+  // let attack = function() {
+  //   let health = this.healthPoints;
+  //   return function() {
+  //     health = health - 4;
+  //     return health;
+  //   }
+  // };
